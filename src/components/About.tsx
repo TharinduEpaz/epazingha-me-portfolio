@@ -71,7 +71,7 @@ export default function About() {
 
       <div className="max-w-4xl">
         <Paragraph className=" mt-4">
-          Hi! I am Tharindu Epasingha. I work as developer and also love to write and create beautiful designs. Welcome to my website!
+          Hi! I am Tharindu Epasingha. I work as a developer and also love to write and create beautiful designs. Welcome to my website!
         </Paragraph>
 
         <Paragraph className=" mt-4">
@@ -79,7 +79,7 @@ export default function About() {
         </Paragraph>
 
         <Paragraph className=" mt-4">
-          Besides coding, I also like writing. Even though English is not my first language, I enjoy sharing my knowledge about technology and other topics I find interesting. Sometimes it's challenging, but I believe practice makes perfect!
+          Besides coding, I also like writing. Even though English isn&apos;t my first language, I enjoy sharing my knowledge about technology and other topics I find interesting. Sometimes it&apos;s challenging, but I believe practice makes perfect!
         </Paragraph>
 
         <Paragraph className=" mt-4">
@@ -91,7 +91,7 @@ export default function About() {
         </Paragraph>
 
         <Paragraph className=" mt-4">
-          Let's learn together about technology, writing, and making beautiful things. I believe we can create amazing stuff when we combine code with good design.
+          Let&apos;s learn together about technology, writing, and making beautiful things. I believe we can create amazing stuff when we combine code with good design.
         </Paragraph>
 
         <Paragraph className=" mt-4">
