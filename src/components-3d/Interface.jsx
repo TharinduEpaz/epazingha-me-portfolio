@@ -6,6 +6,9 @@ import DevelopmentRoadmap from "./DevelopmentRoadmap";
 import Image from "next/image";
 import { FlipWords } from "@/components/ui/flip-words";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import ModernVerticalTimeline from "@/components/VerticalTimeline";
+
+const words = ["A Digital Craftsman", "Designer", "Developer", "Engineer"];
 
 const Section = (props) => {
   const { children } = props;
@@ -32,8 +35,10 @@ export const Interface = () => {
       </Section>
       <Section>
         {/* <SkillsSection name={"JavaScript"} percentage={90} /> */}
-
-        <Timeline />
+        <div className="w-full flex justify-left items-start">
+        
+          <ModernVerticalTimeline />
+        </div>
       </Section>
       {/* <Section>
         <ProjectsSection />
@@ -49,19 +54,30 @@ export const Interface = () => {
 const AboutSection = () => {
   return (
     <div>
-      <h1 className=" text-8xl font-bold  ">Hi I&apos;m Tharindu</h1>
-      <h3 className=" text-4xl ">A Digital Craftsman</h3>
+      <h1 className=" text-[50px] sm:text-[100px] text-transparent bg-clip-text bg-gradient-to-r to-black from-gray-500 ">
+        Hi I&apos;m <span className="text-gray-600 font-bold">Tharindu</span>
+      </h1>
+      {/* <h3 className=" text-4xl ">A Digital Craftsman</h3>  */}
+      <div className="flex flex-col mb-12">
+        <FlipWords words={words} duration={2000} className="text-[30px] sm:text-[75px] text-gray-600" />
+      </div>
+
       {/* <TextGenerateEffect words="Hi I&apos;m Tharindu" duration={0.5} />
       <TextGenerateEffect words="A Digital Craftsman" duration={0.5} /> */}
 
       <motion.p
-        className=" text-lg font-light mt-10"
+        className="text-lg font-light mt-10 ml-2"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
       >
-        I love creating awesome User Experiences, <br></br> Designs and Full Stack Apps
+        I love creating awesome User Experiences, <br></br> Designs and Full
+        Stack Apps
       </motion.p>
+      {/* <span className="  text-xl font-light text-gray-600">
+        I love creating awesome User Experiences, Designs and Full
+        Stack Apps
+      </span> */}
       {/* <motion.button
         type="button"
         className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10"

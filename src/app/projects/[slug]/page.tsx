@@ -7,7 +7,6 @@ import { Products } from "@/components/Products";
 import { products } from "@/constants/products";
 import { Product } from "@/types/products";
 import { Metadata } from "next";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 
 type Props = {

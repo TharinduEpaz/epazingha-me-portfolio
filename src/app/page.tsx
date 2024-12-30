@@ -43,16 +43,13 @@ export default function Home() {
           camera={{ position: [0, 0, 5], fov: 30 }}
           style={{ top: 0, left: 0, width: '100%', height: '100%', scrollbarWidth: 'none' }}
           onCreated={() => setIsLoading(false)}
-          
         >
           <color attach="background" args={["#ececec"]} />
-
           <ScrollControls pages={2} damping={0.3}>
             <ScrollManager section={section} setSection={setSection} />
             <Scroll>
               <Experience section={section} setSection={setSection} />
             </Scroll>
-
             <Scroll html>
               <Interface />
             </Scroll>
@@ -60,7 +57,7 @@ export default function Home() {
         </Canvas>
       </div>
 
-      <TechStack />
+      {/* <TechStack /> */}
     </>
   );
 }

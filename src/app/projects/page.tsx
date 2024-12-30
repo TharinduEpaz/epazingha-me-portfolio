@@ -4,7 +4,6 @@ import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Projects | John Doe",
@@ -20,8 +19,11 @@ export default function Projects() {
         {" "}
         What I&apos;ve been working on
       </Heading>
+      <Paragraph className="mb-10 max-w-xl">
+        🚧 Exciting projects under construction! Check back soon for a showcase of my latest work.
+      </Paragraph>
 
-      <Products />
+      {/* <Products /> */}
     </Container>
   );
 }

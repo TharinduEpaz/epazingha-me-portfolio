@@ -71,47 +71,31 @@ export default function About() {
 
       <div className="max-w-4xl">
         <Paragraph className=" mt-4">
-          Hey there, I&apos;m John Doe - a passionate developer, avid writer,
-          and a connoisseur of awesome design. Welcome to my corner of the
-          digital world!
-        </Paragraph>
-        <Paragraph className=" mt-4">
-          Since the early days of my journey, I&apos;ve been captivated by the
-          art of crafting exceptional digital experiences. As a developer, I
-          thrive on turning lines of code into functional and elegant solutions.
-          My goal is to not just create software, but to build digital marvels
-          that seamlessly merge form and function.
+          Hi! I am Tharindu Epasingha. I work as developer and also love to write and create beautiful designs. Welcome to my website!
         </Paragraph>
 
         <Paragraph className=" mt-4">
-          But my journey doesn&apos;t stop at coding. With a heart full of words
-          and a mind brimming with ideas, I&apos;ve ventured into the realm of
-          writing. From tech articles that unravel complex concepts to creative
-          tales that ignite the imagination, I weave words to inform, entertain,
-          and inspire.
+          From when I started learning to code, I always wanted to make good websites and apps. I try my best to write clean code and make things work well. Every time I finish a project, I feel happy because I can see my code turning into something useful.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          What sets me apart is my unwavering appreciation for design. I believe
-          that aesthetics and usability go hand in hand. My eye for awesome
-          design ensures that every project I undertake not only works
-          flawlessly under the hood but also looks stunning on the surface.
+          Besides coding, I also like writing. Even though English is not my first language, I enjoy sharing my knowledge about technology and other topics I find interesting. Sometimes it's challenging, but I believe practice makes perfect!
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          Through this website, I aim to share my insights, experiences, and
-          creations with you. Whether you&apos;re a fellow developer seeking
-          solutions, a fellow writer in search of inspiration, or simply someone
-          who appreciates the finer aspects of design, there&apos;s something
-          here for you.
+          What makes me different is that I really care about how things look. I think good design is very important. When I work on projects, I make sure they not only work good but also look nice for people who use them.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          Join me on this journey of bytes and narratives, logic and creativity,
-          code and prose. Together, we can explore the boundless possibilities
-          of technology and storytelling, all while reveling in the sheer beauty
-          of thoughtful design.
+          On this website, I want to share what I learn and create. If you are also learning programming, like to write, or just interested in design, you might find something useful here.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          Thank you for being here, and I can&apos;t wait to embark on this
-          adventure with you.
+          Let's learn together about technology, writing, and making beautiful things. I believe we can create amazing stuff when we combine code with good design.
+        </Paragraph>
+
+        <Paragraph className=" mt-4">
+          Thank you for visiting my website. I hope we can share many interesting things together!
         </Paragraph>
       </div>
     </div>
