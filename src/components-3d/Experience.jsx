@@ -48,7 +48,7 @@ export const Experience = (props) => {
     transition={{ duration: 1 }}
 
     >
-    <Avatar animation={characterAnimation} position={[0.25,-0.8,0]} rotation-z={0.5} />
+    <Avatar animation={characterAnimation} position={[0,-0.8,0]} rotation-z={0.5} />
     </motion.group>
       <Sky />
       <Environment preset="sunset" />
@@ -62,9 +62,9 @@ export const Experience = (props) => {
           resolution={256}
           color="#000000"
         />
-        <Desk />
+        {/* <Desk /> */}
         <Stool />
-        {/* <Husky /> */}
+        <Husky />
         {/* <Avatar animation={animation} />
         {animation === "Typing" && (
           <mesh scale={[0.8, 0.5, 0.8]} position-y={0.25}>

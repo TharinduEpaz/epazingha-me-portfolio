@@ -17,11 +17,27 @@ const defaultFormState = {
 };
 export const Contact = () => {
   const [formData, setFormData] = useState(defaultFormState);
-
-  const handleSubmit = (e: any) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
     // Write your submit logic here
-    console.log(formData);
+    const response = await fetch('/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name.value,
+        email: formData.email.value,
+        message: formData.message.value,
+      }),
+    });
+
+    if (response.ok) {
+      setFormData(defaultFormState);
+    }
+    setIsLoading(false);
   };
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -78,7 +94,7 @@ export const Contact = () => {
         className="w-full px-2 py-2 mt-4 bg-neutral-100 rounded-md font-bold text-neutral-500"
         type="submit"
       >
-        Submit{" "}
+        {isLoading ? "Sending..." : "Submit"}
       </button>
     </form>
   );

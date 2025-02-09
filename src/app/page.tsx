@@ -13,6 +13,7 @@ import Experience from "@/components-3d/Experience";
 import Interface from "@/components-3d/Interface";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
+import Navbar from "@/components-3d/Navbar";
 export default function Home() {
   const [section, setSection] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,11 +38,10 @@ export default function Home() {
         </div>
       )}
 
-      <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+     
         <Canvas
           shadows
           camera={{ position: [0, 0, 5], fov: 30 }}
-          style={{ top: 0, left: 0, width: '100%', height: '100%', scrollbarWidth: 'none' }}
           onCreated={() => setIsLoading(false)}
         >
           <color attach="background" args={["#ececec"]} />
@@ -55,7 +55,6 @@ export default function Home() {
             </Scroll>
           </ScrollControls>
         </Canvas>
-      </div>
 
       {/* <TechStack /> */}
     </>

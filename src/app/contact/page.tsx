@@ -7,9 +7,9 @@ import { Products } from "@/components/Products";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | John Doe",
+  title: "Contact | Tharindu Epasingha",
   description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+    "Tharindu Epasingha is a developer, writer and educator. He loves to be a digital nomad and travels around the world while working remotely.",
 };
 
 export default function Projects() {
