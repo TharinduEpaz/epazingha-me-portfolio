@@ -11,7 +11,6 @@ export function Husky(props) {
   const { nodes, materials, animations } = useGLTF('models/Husky.glb')
 
   const { actions, names } = useAnimations(animations, group)
-  console.log(names)
 
   useEffect(() => {
     actions[names[11]].reset().fadeIn(0.5).play();

@@ -88,6 +88,7 @@ const AboutSection = () => {
   return (
     <>
       <HeroHighlight>
+        <div className="flex flex-col sm:flex-row items-center justify-center px-4 mt-10">
         <motion.h1
           initial={{
             opacity: 0,
@@ -101,13 +102,14 @@ const AboutSection = () => {
             duration: 0.5,
             ease: [0.4, 0.0, 0.2, 1],
           }}
-          className="text-2xl px-4 mt-10 font-bold md:text-4xl lg:text-5xl text-neutral-700 dark:text-white  lg:leading-snug"
+          className="text-2xl font-bold md:text-4xl lg:text-5xl text-neutral-700 dark:text-white  lg:leading-snug"
         >
           Hello, I&apos;m Tharindu, &nbsp;
-          <Highlight className="text-black dark:text-white">
+        </motion.h1>
+        <Highlight className="text-black dark:text-white text-2xl sm:text-4xl">
             A Digital Craftsman
           </Highlight>
-        </motion.h1>
+        </div>
       </HeroHighlight>
     </>
   );
