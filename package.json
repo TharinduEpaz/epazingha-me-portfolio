@@ -12,6 +12,8 @@
     "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.3.0",
     "@next/mdx": "^13.4.19",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-slot": "^1.1.2",
     "@react-three/drei": "9.75.0",
     "@react-three/fiber": "8.13.3",
     "@tabler/icons-react": "^2.47.0",

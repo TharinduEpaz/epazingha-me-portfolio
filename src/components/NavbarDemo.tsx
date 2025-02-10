@@ -1,75 +1,101 @@
-"use client";
-import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+"use client"
+import { useState } from "react"
+import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { Sheet, SheetContent, SheetTrigger } from "./ui/Sheet"
+import { MenuIcon } from "lucide-react"
+import { Button } from "./ui/Button"
 
 export function NavbarDemo() {
   return (
-    <div className="relative w-full flex items-center justify-center">
+    <div className="relative w-full flex items-center md:justify-center">
       <Navbar className="top-2" />
     </div>
-  );
+  )
 }
 
 function Navbar({ className }: { className?: string }) {
-  const [active, setActive] = useState<string | null>(null);
-  return (
-    <div
-      className={cn(" top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
-    >
-      <Menu setActive={setActive}>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/projects">Projects</Link>
-      <Link href="/blog">Blog</Link>
+  const [active, setActive] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
 
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8" target="_blank">Full Stack Development</HoveredLink>
-            <HoveredLink href="https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8" target="_blank">UI/UX Design</HoveredLink>
-            <HoveredLink href="https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8" target="_blank">3D Web Development</HoveredLink>
-            <HoveredLink href="https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8" target="_blank">Cloud Services (AWS, Azure, etc.)</HoveredLink>
-          </div>
-        </MenuItem>
-        <Link href="/contact">Contact</Link>
-        {/* <MenuItem setActive={setActive} active={active} item="Projects">
-          <div className="  text-sm grid grid-cols-2 gap-10 p-4">
-            <ProductItem
-              title="Algochurn"
-              href="https://algochurn.com"
-              src="https://assets.aceternity.com/demos/algochurn.webp"
-              description="Prepare for tech interviews like never before."
-            />
-            <ProductItem
-              title="Tailwind Master Kit"
-              href="https://tailwindmasterkit.com"
-              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-              description="Production ready Tailwind css components for your next project"
-            />
-            <ProductItem
-              title="Moonbeam"
-              href="https://gomoonbeam.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-              description="Never write from scratch again. Go from idea to blog in minutes."
-            />
-            <ProductItem
-              title="Rogue"
-              href="https://userogue.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
-            />
-          </div>
-        </MenuItem> */}
-        {/* <MenuItem setActive={setActive} active={active} item="Pricing">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/hobby">Hobby</HoveredLink>
-            <HoveredLink href="/individual">Individual</HoveredLink>
-            <HoveredLink href="/team">Team</HoveredLink>
-            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-          </div>
-        </MenuItem> */}
-      </Menu>
+  const menuItems = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
+  ]
+
+  const servicesSubmenu = [
+    { href: "https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8", label: "Full Stack Development" },
+    { href: "https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8", label: "UI/UX Design" },
+    { href: "https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8", label: "3D Web Development" },
+    { href: "https://www.upwork.com/freelancers/~014fabb5ea9d8ed7d8", label: "Cloud Services (AWS, Azure, etc.)" },
+  ]
+
+  return (
+    <div className={cn("top-10 inset-x-0 max-w-2xl z-50", className)}>
+      {/* Desktop Menu */}
+      <div className="hidden md:block">
+        <Menu setActive={setActive}>
+          {menuItems.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+          <MenuItem setActive={setActive} active={active} item="Services">
+            <div className="flex flex-col space-y-4 text-sm">
+              {servicesSubmenu.map((item) => (
+                <HoveredLink key={item.label} href={item.href} target="_blank">
+                  {item.label}
+                </HoveredLink>
+              ))}
+            </div>
+          </MenuItem>
+        </Menu>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className="md:hidden">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <MenuIcon className="h-6 w-6" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="flex flex-col space-y-4">
+              {menuItems.map((item) => (
+                <Link 
+                  key={item.href} 
+                  href={item.href} 
+                  className="block py-2 text-lg"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="py-2">
+                <h3 className="mb-2 text-lg font-semibold">Services</h3>
+                {servicesSubmenu.map((item) => (
+                  <Link 
+                    key={item.label} 
+                    href={item.href} 
+                    target="_blank" 
+                    className="block py-2 pl-4 text-sm"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </div>
     </div>
-  );
+  )
 }
+
