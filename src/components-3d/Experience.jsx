@@ -6,50 +6,42 @@ import { AmbientLight, Mesh } from "three";
 import { motion } from "framer-motion-3d";
 import { useThree } from "@react-three/fiber";
 import { Stool } from "./Stool";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Husky } from "./Husky";
 
 export const Experience = (props) => {
-  const { section} = props;
+  const { section } = props;
   const { viewport } = useThree();
-  
-  const [characterAnimation, setCharacterAnimation] = useState("Typing"); 
+  const [characterAnimation, setCharacterAnimation] = useState("Typing");
 
   useEffect(() => {
-
-    section === 0 ? null : setCharacterAnimation('Falling');
+    section === 0 ? null : setCharacterAnimation("Falling");
     setTimeout(() => {
-      setCharacterAnimation(section === 0 ? 'Typing' : 'Standing');
-    }
-    , 700);
+      setCharacterAnimation(section === 0 ? "Typing" : "Standing");
+    }, 700);
   }, [section]);
-
-  // const { animation } = useControls({
-  //   animation: {
-  //     value: "Typing",
-  //     options: ["Typing", "Falling", "Standing"],
-  //   },
-  // });
 
   return (
     <>
-    <motion.group
-    animate = {"" + section}
-    variants={{
-
-      0: {
-        opacity: 1,
-      },
-      1: {
-        y: -viewport.height,
-        opacity: 0,
-      },
-    }}
-    transition={{ duration: 1 }}
-
-    >
-    <Avatar animation={characterAnimation} position={[0,-0.8,0]} rotation-z={0.5} />
-    </motion.group>
+      <motion.group
+        animate={"" + section}
+        variants={{
+          0: {
+            opacity: 1,
+          },
+          1: {
+            y: -viewport.height,
+            opacity: 0,
+          },
+        }}
+        transition={{ duration: 1 }}
+      >
+        <Avatar
+          animation={characterAnimation}
+          position={[0, -0.8, 0]}
+          rotation-z={0.5}
+        />
+      </motion.group>
       <Sky />
       <Environment preset="sunset" />
       <group position-y={-1}>
@@ -65,33 +57,26 @@ export const Experience = (props) => {
         {/* <Desk /> */}
         <Stool />
         <Husky />
-        {/* <Avatar animation={animation} />
-        {animation === "Typing" && (
-          <mesh scale={[0.8, 0.5, 0.8]} position-y={0.25}>
-            <boxGeometry />
-            <meshStandardMaterial color={"white"} />
-          </mesh>
-        )} */}
-        <group name="characterSpot">
-        {/* <mesh scale={5} rotation-x={-Math.PI * 0.5} position-y={-0.001}>
+        {/* <group name="characterSpot">
+          <mesh scale={5} rotation-x={-Math.PI * 0.5} position-y={-0.001}>
             <planeGeometry />
             <meshStandardMaterial color={'white'} />
-        </mesh> */}
-        </group>
+        </mesh>
+        </group> */}
       </group>
-      
+
       {/* <ambientLight intensity={1} /> */}
-      <motion.group position={[0, -1.5, -10]}
+      <motion.group
+        position={[0, -1.5, -10]}
         animate={{
           z: section == 1 ? 0 : -10,
-          y: section == 1 ? -viewport.height -1 : -1,
+          y: section == 1 ? -viewport.height - 1 : -1,
           x: section == 1 ? 0.7 : 0,
           opacity: section == 1 ? 1 : 0,
         }}
         transition={{ duration: 1 }}
       >
         <directionalLight position={[-5, 3, 5]} intensity={0.5} />
-        
       </motion.group>
     </>
   );

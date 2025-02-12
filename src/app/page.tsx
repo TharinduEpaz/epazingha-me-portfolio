@@ -7,7 +7,6 @@ import Experience from "@/components-3d/Experience";
 import Interface from "@/components-3d/Interface";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
-import Navbar from "@/components-3d/Navbar";
 export default function Home() {
   const [section, setSection] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,11 +50,12 @@ const LoadingOverlay = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
         zIndex: 9999,
       }}
     >
       <RingLoader color="blue" size={100} />
-      <p className="text-2xl font-bold ml-4">Loading 3D experience...</p>
+      <p className="text-2xl font-bold ml-4 mt-4">Loading 3D experience...</p>
     </div>
   );
 };

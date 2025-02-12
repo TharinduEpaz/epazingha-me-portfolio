@@ -19,7 +19,7 @@ export function Avatar(props) {
   // });
 
   const group = useRef();
-  const { nodes, materials } = useGLTF("models/64bbb4284e1697f144eda2b5.glb");
+  const { nodes, materials } = useGLTF("models/avatar.glb");
   const { animations: typingAnimation } = useFBX("animations/Sitting.fbx");
   const { animations: standingAnimation } = useFBX(
     "animations/Standing Idle.fbx"
@@ -27,12 +27,13 @@ export function Avatar(props) {
   const { animations: fallingAnimation } = useFBX(
     "animations/Falling Idle.fbx"
   );
+  const { animations: jumpingAnimation } = useFBX("animations/jump-up.fbx");
 
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";
   fallingAnimation[0].name = "Falling";
-
-  const { actions } = useAnimations([typingAnimation[0],standingAnimation[0],fallingAnimation[0]], group);
+  jumpingAnimation[0].name = "Jumping";
+  const { actions } = useAnimations([typingAnimation[0],standingAnimation[0],fallingAnimation[0],jumpingAnimation[0]], group);
 
   // useFrame((state) => {
   //   if (headFollow) {
