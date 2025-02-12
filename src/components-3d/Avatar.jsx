@@ -27,13 +27,11 @@ export function Avatar(props) {
   const { animations: fallingAnimation } = useFBX(
     "animations/Falling Idle.fbx"
   );
-  const { animations: jumpingAnimation } = useFBX("animations/jump-up.fbx");
 
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";
   fallingAnimation[0].name = "Falling";
-  jumpingAnimation[0].name = "Jumping";
-  const { actions } = useAnimations([typingAnimation[0],standingAnimation[0],fallingAnimation[0],jumpingAnimation[0]], group);
+  const { actions } = useAnimations([typingAnimation[0],standingAnimation[0],fallingAnimation[0]], group);
 
   // useFrame((state) => {
   //   if (headFollow) {
