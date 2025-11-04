@@ -11,6 +11,8 @@
   "dependencies": {
     "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/mdx": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^13.4.19",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",
@@ -27,6 +29,7 @@
     "clsx": "^2.1.1",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
+    "fast-glob": "^3.3.3",
     "framer-motion": "^10.18.0",
     "framer-motion-3d": "^10.14.0",
     "gsap": "^3.12.2",
@@ -50,5 +53,8 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "0.146.0",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.13"
   }
 }
