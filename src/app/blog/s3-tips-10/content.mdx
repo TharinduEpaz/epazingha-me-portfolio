@@ -1,0 +1,156 @@
+import { BlogLayout } from "@/components/BlogLayout";
+import { CodeWindow } from "@/components/CodeWindow";
+import { Callout } from "@/components/Callout";
+
+export const meta = {
+  date: "2025-11-03",
+  title: "10 AWS S3 Facts You Probably Didn’t Know",
+  description:
+    "Learn 10 facts about S3 that you might not know. From cost savings to security, this guide covers essential tips for using S3.",
+  image:
+    "/images/blog/s3-facts-blog-title-image.png",
+  tags: ["S3", "AWS", "Cloud Storage"],
+};
+
+export default (props) => <BlogLayout meta={meta} {...props} />;
+
+Maybe you use s3 daily and you knew the facts, maybe you are forgotten. So my idea is to give you a quick knowledge recap, or new knowledge..
+
+## 1. S3 Etags are used to keep track of the objects
+
+<Callout type="note">
+Etags are useful if you want to programmatically detect content changes to S3 objects
+</Callout>
+
+An entity tag (etag) is a response header that represents a resource that has changed **without the need to download**.
+Etags are part of the HTTP protocol.
+It reflects changes **only to the contents of an object, not its metadata**.
+Etag represents a specific version of an object.
+Etags allows clients to quickly verify the integrity of downloaded or uploaded data.
+
+Clients can decide to download or update an object only if the ETag has changed,
+**reducing unnecessary transfer** and ensuring consistency.
+
+
+## 2. You cannot use S3 Express One storage class with general purpose bucket
+
+General purpose (standard) S3 buckets cannot be used with the S3 Express One Zone storage class;
+instead, S3 Express One Zone requires a different type of bucket known as an **"S3 directory bucket"**.
+
+S3 directory buckets are specifically designed for this high-performance storage class and are not the same as regular general-purpose S3 buckets.
+Only S3 directory buckets allow you to store objects using the Express One Zone storage class,
+taking advantage of its ultra-low latency and high throughput features.
+
+
+## 3. Flat per request charge in Express One Zone Storage class
+
+The flat per-request charge in Amazon S3 Express One Zone means that for any request (such as PUT or GET) where the size
+of the request is **up to 512 KB**, a fixed, consistent fee is applied regardless of the actual request size.
+
+If the request size exceeds 512 KB, additional fees are applied per GB for the portion of the request that exceeds 512 KB.
+This pricing model simplifies cost calculation for smaller requests by charging a single flat fee and then scaling charges
+for larger requests proportionally to their extra data size.
+
+For example:
+
+- Requests ≤ 512 KB incur just the flat per-request charge.
+
+- Requests > 512 KB incur the flat per-request charge **plus an extra fee** based on the size in GB of the data beyond 512 KB.
+
+## 4. S3 Intelligent tiering class has small monthly fee for object monitoring and automation.
+
+S3 Intelligent-Tiering is a powerful option for reducing storage costs automatically,
+especially for workloads with unpredictable or changing data access patterns.
+
+It automatically decides which access tier is most suitable according to data access patterns.
+
+This class is best suited for data lakes, analytics, new applications,
+and user-generated content where access patterns are unknown or changing.
+
+When we consider about the cost there is a **small monthly monitoring and automation charge per object** that is not appear in the surface. 
+
+
+## 5. Why you need S3 access points ? 
+
+Imagine you have a big shared folder (S3 bucket) that different teams need to access:
+
+- Marketing team only needs to see promotional images
+- Development team only needs access to application files
+- Finance team only needs reports
+
+Instead of giving everyone the same "master key" to the entire bucket,
+you create **separate access points with different permissions** for each team.
+
+How they work:
+
+- Each access point acts like a specialized doorway
+- You can set different rules for each doorway (who can enter, what they can do)
+- Teams use their specific access point to get to their data
+- Same bucket, different controlled entry points
+
+Real benefit:
+Rather than managing complex permissions on one bucket, you create simple, focused access points that make it much easier to control who sees what.
+It's like having a receptionist at each entrance who knows exactly what each visitor is allowed to access.
+
+## 6. What is S3 Storage class analysis? how it compares with Intelligent Tiering? 
+
+Storage Class Analysis allows you to analyze storage access patterns of objects 
+within a bucket to recommend objects to move between STANDARD to STANDARD_IA
+
+The results can be exported to CSV
+export this daily usage data to an S3 bucket
+Use data in Amazon QuickSight for data visualization
+
+Storage Class Analysis gives you data and control; Intelligent Tiering gives you automation. 
+Use Analysis when you need custom business logic, compliance documentation, 
+or want to avoid monitoring fees for smaller datasets.
+
+Bottom Line: Intelligent Tiering is usually better for automation, 
+but Storage Class Analysis is still valuable for insights and manual control scenarios.
+
+## 7. Make Your Bucket "Talk": Triggering Lambda & SQS with S3 Event Notifications
+
+S3 Event Notifications allows your bucket to notify other AWS Services about s3 event data.
+S3 Event Notifications makes application integration very easy for S3
+
+Possible Destination to other AWS Services
+  - Amazon Simple Notification Service (SNS) topics
+  - Amazon Simple Queue Service (SQS) queues
+  - FIFO not supported
+  - AWS Lambda function
+  - Amazon EventBridge
+
+  <Callout type="info"> S3 also supports Amazon EventBridge, offering even more complex filtering, retries, and event routing between AWS services.</Callout>
+
+## 8.  You can buy ready-to-use S3 data products directly from AWS Marketplace
+
+AWS Marketplace offers a category called “Data Products” where vendors publish and sell datasets that can be consumed directly via Amazon S3.
+When you subscribe to a data product, the provider can grant your AWS account secure, read-only access to their S3 bucket — no downloads, no manual imports.
+
+  Examples:
+  - Financial market data (e.g., Nasdaq, Reuters)
+  - Geostatic and satellite imagery
+  - Demographic or climate datasets
+  - Machine learning training data
+
+These datasets often update automatically, 
+so your applications or data lake can always pull the latest data from S3 without any integration overhead.
+
+## 9. Versioning can only be suspended — not turned off
+
+Once you enable versioning on a bucket, you cannot disable it completely — you can only suspend it.
+Suspension stops new versions from being created, but all previously stored versions remain intact.
+
+This design protects historical data from being lost accidentally and ensures that version history remains traceable.
+
+## 10. Creating Data So Secure, Even YOU Can't Read It
+
+<Callout type="info"> Enterprises protect ultra-sensitive data by encrypting it with **customer-managed keys (CMKs)** in **AWS KMS** — and then locking down key access so tightly that **even the data owners or admins can’t decrypt it**. </Callout>
+
+Data stored in S3 is encrypted using SSE-KMS (Server-Side Encryption with AWS KMS).
+
+  - The encryption keys (CMKs) are customer-managed — not controlled by AWS.
+  - Enterprises set KMS key policies that:
+      - Allow encryption (Encrypt) operations (so apps can write data)
+      - But deny decryption (Decrypt) permissions to everyone — including the data creators, admins, or AWS root users.
+      - Only a separate, controlled service (or an external key escrow system) can decrypt under strict governance.
