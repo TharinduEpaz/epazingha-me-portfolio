@@ -6,6 +6,7 @@ import { Heading } from "./Heading";
 import { Paragraph } from "./Paragraph";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { formatDate } from "../../lib/formatDate";
 
 export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
   const [hovered, setHovered] = useState<string | null>(null);
@@ -50,7 +51,7 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                     scaleX: 0.95,
                     scaleY: 0.95,
                   }}
-                  className="absolute z-0 pointer-events-none bg-gray-50 inset-0 h-full w-full   rounded-md "
+                  className="absolute z-0 pointer-events-none bg-gray-50 inset-0 h-full w-full rounded-md "
                 />
               )}
             </AnimatePresence>
@@ -70,15 +71,20 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                 <Paragraph className="text-sm md:text-sm lg:text-sm mt-2">
                   {blog.description}
                 </Paragraph>
-                <div className="flex space-x-2 flex-wrap mt-4">
+                <div className="flex items-center space-x-1 flex-wrap mt-4">
                   {blog.tags?.map((tag, index) => (
                     <span
-                      key={`tag-${blog.slug}`}
+                      key={`tag-${blog.slug}-${index}`}
                       className="text-xs px-1 py-0.5 text-secondary border border-neutral-200 bg-white rounded-md"
                     >
                       {tag}
                     </span>
                   ))}
+                  {blog.date && (
+                    <span className="w-full text-xs text-gray-500 mt-4 -ml-2 text-left">
+                      {formatDate(blog.date)}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
